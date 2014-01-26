@@ -9,6 +9,8 @@ module JournalParsing =
     type UserState = unit
     type Parser<'t> = Parser<'t, UserState>
 
+    type RawTransaction = {Date :DateTime; AuxDate :DateTime option; State :char}
+
     let str s = pstring s
 
     let txnDateParser : Parser<_> =
@@ -20,6 +22,16 @@ module JournalParsing =
     let regularTxnParser : Parser<_> =
         txnDateParser
         .>>. opt (pchar '='>>. txnDateParser)
+        .>>. (opt spaces >>. pchar '*')
+        |>> (fun ((d,ad),s) -> {Date=d;AuxDate=ad;State=s})
+
+// data RawTransaction = RawTransaction { rawTxnDate    :: !String
+//                                     , rawTxnDateAux :: Maybe String
+//                                     , rawTxnState   :: Maybe Char
+//                                     , rawTxnCode    :: Maybe String
+//                                     , rawTxnDesc    :: !String
+//                                     , rawTxnNote    :: Maybe String
+//                                     , rawTxnPosts   :: ![RawPosting] }
     
 //    regularTxnParser :: TokenParsing m => m RawEntity
 //regularTxnParser = RawTransactionEntity <$!> go
