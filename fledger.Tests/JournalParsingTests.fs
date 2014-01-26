@@ -15,4 +15,8 @@ module JournalParsingTests =
 
     [<Test>] 
     let parseDate ()= 
-        testParser ledgerdate @"2014-01-14" (DateTime(2014,01,14))
+        testParser txnDateParser @"2014-01-14" (DateTime(2014,01,14))
+
+    [<Test>]
+    let parseRegularTx ()=
+        testParser regularTxnParser @"2014-01-14=2014-01-12" (DateTime(2014,01,14), Some(DateTime(2014,01,12)))
