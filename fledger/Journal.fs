@@ -1,4 +1,4 @@
-namespace Fledger.Journal
+namespace Fledger
 
 // Contains all the type definitions in the Journal
 // Code originally 'forked' from https://github.com/readysetmark/WealthPulse/blob/master/Journal/Journal.fs

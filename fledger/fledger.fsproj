@@ -45,12 +45,12 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Journal.fs" />
+    <Compile Include="Parser.fs" />
     <Compile Include="JournalParsing.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Parser.fs" />
   </ItemGroup>
 </Project>

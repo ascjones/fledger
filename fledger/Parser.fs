@@ -1,3 +1,5 @@
+namespace Fledger
+
 open FParsec
 
 // Parser module contains functions for parsing the Ledger journal file
