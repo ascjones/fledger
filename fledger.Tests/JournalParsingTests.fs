@@ -7,6 +7,7 @@ module JournalParsingTests =
     open NUnit.Framework
     open Fledger.JournalParsing
     open System
+    open Parser
 
     let testParser p str expected = 
         match run p str with 
@@ -23,6 +24,11 @@ Assets:ZA:ABSA:Current                                          -330.00 ZAR"
     let parseDate ()= 
         testParser txnDateParser @"2014-01-14" (DateTime(2014,01,14))
 
+//    [<Test>]
+//    let parseRegularTx ()=
+//        testParser regularTxnParser tx {Date=DateTime(2014,01,14);AuxDate=Some(DateTime(2014,01,17));State='*';Description="La Parada"} 
+
     [<Test>]
-    let parseRegularTx ()=
-        testParser regularTxnParser tx {Date=DateTime(2014,01,14);AuxDate=Some(DateTime(2014,01,17));State='*'}
+    let parseTx ()=
+        let result = parseJournalFile "~/code/ledger/data/2014-01.ledger" System.Text.ASCIIEncoding.UTF8
+        result |> should equal 0
